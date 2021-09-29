@@ -18,6 +18,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void printUserInfo(User user) {
-        System.out.println(user);
+        System.out.println("玩家信息：" + user);
     }
 }

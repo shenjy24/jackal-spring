@@ -2,24 +2,27 @@ package com.jonas;
 
 import com.jonas.bean.User;
 import com.jonas.controller.UserController;
+import com.jonas.listener.event.LogEvent;
 import com.jonas.service.UserService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.scheduling.annotation.EnableAsync;
 
+@EnableAsync   //启用异步调用
 @ComponentScan
 public class Application {
 
     public static void main(String[] args) {
         Application app = new Application();
-        app.testAutowired();
+        app.testAnnotationInject();
     }
 
     /**
      * 测试xml配置获取bean
      */
-    public void testGetBean() {
+    public void testXmlInject() {
         ApplicationContext context = new ClassPathXmlApplicationContext("spring-bean.xml");
         User user = (User) context.getBean("userBean");
         System.out.println(user);
@@ -28,11 +31,13 @@ public class Application {
     /**
      * 测试注解配置获取bean
      */
-    public void testAutoInject() {
+    public void testAnnotationInject() {
         ApplicationContext context = new AnnotationConfigApplicationContext(Application.class);
         UserService userService = context.getBean(UserService.class);
         User user = userService.getUser();
         userService.printUserInfo(user);
+        //发布事件
+        context.publishEvent(new LogEvent(context, user));
     }
 
     /**
