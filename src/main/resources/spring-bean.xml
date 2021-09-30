@@ -8,4 +8,8 @@
         <property name="userName" value="Jonas"/>
     </bean>
 
+    <!-- 自定义FactoryBean实现自定义bean加载逻辑 -->
+    <bean id="customUserBean" class="com.jonas.bean.UserFactoryBean">
+        <property name="userInfo" value="2,Tom"/>
+    </bean>
 </beans>

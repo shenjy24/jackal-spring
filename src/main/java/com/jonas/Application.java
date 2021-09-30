@@ -16,7 +16,7 @@ public class Application {
 
     public static void main(String[] args) {
         Application app = new Application();
-        app.testAnnotationInject();
+        app.testXmlInject();
     }
 
     /**
@@ -26,6 +26,8 @@ public class Application {
         ApplicationContext context = new ClassPathXmlApplicationContext("spring-bean.xml");
         User user = (User) context.getBean("userBean");
         System.out.println(user);
+        User customUser = (User) context.getBean("customUserBean");
+        System.out.println(customUser);
     }
 
     /**
