@@ -6,10 +6,20 @@
     <bean id="userBean" class="com.jonas.bean.User">
         <property name="userId" value="1"/>
         <property name="userName" value="Jonas"/>
+        <property name="birthDate" value="1990-10-10"/>
     </bean>
 
     <!-- 自定义FactoryBean实现自定义bean加载逻辑 -->
-    <bean id="customUserBean" class="com.jonas.bean.UserFactoryBean">
-        <property name="userInfo" value="2,Tom"/>
+    <bean id="customUserBean" class="com.jonas.feature.factorybean.UserFactoryBean">
+        <property name="userInfo" value="2,Tom,1990-10-10"/>
+    </bean>
+
+    <!-- 自定义属性编辑器 -->
+    <bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+        <property name="customEditors">
+            <map>
+                <entry key="java.util.Date" value="com.jonas.feature.property.DatePropertyEditor"/>
+            </map>
+        </property>
     </bean>
 </beans>

@@ -1,7 +1,6 @@
 package com.jonas;
 
 import com.jonas.bean.User;
-import com.jonas.bean.UserFactoryBean;
 import com.jonas.controller.UserController;
 import com.jonas.listener.event.LogEvent;
 import com.jonas.service.UserService;
@@ -27,8 +26,8 @@ public class Application {
         ApplicationContext context = new ClassPathXmlApplicationContext("spring-bean.xml");
         User user = (User) context.getBean("userBean");
         System.out.println(user);
-        // User customUser = (User) context.getBean("customUserBean");
-        UserFactoryBean customUser = (UserFactoryBean) context.getBean("&customUserBean");
+         User customUser = (User) context.getBean("customUserBean");
+//        UserFactoryBean customUser = (UserFactoryBean) context.getBean("&customUserBean");
         System.out.println(customUser);
     }
 
