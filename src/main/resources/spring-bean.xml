@@ -14,12 +14,21 @@
         <property name="userInfo" value="2,Tom,1990-10-10"/>
     </bean>
 
-    <!-- 自定义属性编辑器 -->
-    <bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">
-        <property name="customEditors">
-            <map>
-                <entry key="java.util.Date" value="com.jonas.feature.property.DatePropertyEditor"/>
-            </map>
+    <!-- 自定义属性编辑器 与propertyEditorRegistrars二选一 -->
+<!--    <bean id="customEditors" class="org.springframework.beans.factory.config.CustomEditorConfigurer">-->
+<!--        <property name="customEditors">-->
+<!--            <map>-->
+<!--                <entry key="java.util.Date" value="com.jonas.feature.property.DatePropertyEditor"/>-->
+<!--            </map>-->
+<!--        </property>-->
+<!--    </bean>-->
+
+    <!-- 自定义Spring自带编辑器 -->
+    <bean id="propertyEditorRegistrars" class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+        <property name="propertyEditorRegistrars">
+            <list>
+                <bean class="com.jonas.feature.property.DatePropertyEditorRegistrar"/>
+            </list>
         </property>
     </bean>
 </beans>
