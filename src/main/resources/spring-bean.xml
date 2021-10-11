@@ -3,7 +3,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-    <bean id="userBean" class="com.jonas.bean.User">
+    <bean id="userBean" class="com.jonas.bean.User" init-method="init">
         <property name="userId" value="1"/>
         <property name="userName" value="Jonas"/>
         <property name="birthDate" value="1990-10-10"/>
@@ -15,13 +15,13 @@
     </bean>
 
     <!-- 自定义属性编辑器 与propertyEditorRegistrars二选一 -->
-<!--    <bean id="customEditors" class="org.springframework.beans.factory.config.CustomEditorConfigurer">-->
-<!--        <property name="customEditors">-->
-<!--            <map>-->
-<!--                <entry key="java.util.Date" value="com.jonas.feature.property.DatePropertyEditor"/>-->
-<!--            </map>-->
-<!--        </property>-->
-<!--    </bean>-->
+    <!--    <bean id="customEditors" class="org.springframework.beans.factory.config.CustomEditorConfigurer">-->
+    <!--        <property name="customEditors">-->
+    <!--            <map>-->
+    <!--                <entry key="java.util.Date" value="com.jonas.feature.property.DatePropertyEditor"/>-->
+    <!--            </map>-->
+    <!--        </property>-->
+    <!--    </bean>-->
 
     <!-- 自定义Spring自带编辑器 -->
     <bean id="propertyEditorRegistrars" class="org.springframework.beans.factory.config.CustomEditorConfigurer">
@@ -33,5 +33,9 @@
     </bean>
 
     <!-- 自定义BeanFactoryPostProcessor -->
-    <bean id="userBeanFactoryPostProcessor" class="com.jonas.feature.beanfactorypostprocessor.UserBeanFactoryPostProcessor"/>
+    <bean id="userBeanFactoryPostProcessor"
+          class="com.jonas.feature.beanfactorypostprocessor.UserBeanFactoryPostProcessor"/>
+
+    <!-- 自定义BeanPostProcessor -->
+    <bean id="userBeanPostProcessor" class="com.jonas.feature.beanpostprocessor.UserBeanPostProcessor"/>
 </beans>

@@ -13,4 +13,8 @@ public class User {
     private int userId;
     private String userName;
     private Date birthDate;
+
+    public void init() {
+        System.out.println("init user");
+    }
 }
