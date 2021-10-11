@@ -31,4 +31,7 @@
             </list>
         </property>
     </bean>
+
+    <!-- 自定义BeanFactoryPostProcessor -->
+    <bean id="userBeanFactoryPostProcessor" class="com.jonas.feature.beanfactorypostprocessor.UserBeanFactoryPostProcessor"/>
 </beans>
