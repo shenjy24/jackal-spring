@@ -5,12 +5,10 @@ import org.springframework.beans.MutablePropertyValues;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
-import org.springframework.stereotype.Component;
 
 /**
  * BeanFactoryPostProcessor是在spring容器加载了bean的定义文件之后，在bean实例化之前执行的。
  */
-@Component
 public class UserBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
 
     @Override
