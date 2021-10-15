@@ -12,6 +12,7 @@ public class JdkProxyTest {
         //根据目标对象生成代理对象
         JdkProxyService proxy = (JdkProxyService) invocationHandler.getProxy();
         //调用代理对象的方法
-        proxy.print();
+        proxy.invoke1();
+        proxy.invoke2();
     }
 }
