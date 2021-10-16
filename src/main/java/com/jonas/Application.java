@@ -2,6 +2,8 @@ package com.jonas;
 
 import com.jonas.bean.User;
 import com.jonas.controller.UserController;
+import com.jonas.feature.transaction.domain.Player;
+import com.jonas.feature.transaction.service.PlayerService;
 import com.jonas.listener.event.LogEvent;
 import com.jonas.service.UserService;
 import org.springframework.context.ApplicationContext;
@@ -10,13 +12,22 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.scheduling.annotation.EnableAsync;
 
+import java.sql.Date;
+
 @EnableAsync   //启用异步调用
 @ComponentScan
 public class Application {
 
     public static void main(String[] args) {
         Application app = new Application();
-        app.testXmlInject();
+        app.testTransaction();
+    }
+
+    public void testTransaction() {
+        ApplicationContext context = new ClassPathXmlApplicationContext("spring-bean.xml");
+        PlayerService playerService = (PlayerService) context.getBean("playerService");
+        Player player = new Player("Jonas", new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis()));
+        playerService.save(player);
     }
 
     /**
