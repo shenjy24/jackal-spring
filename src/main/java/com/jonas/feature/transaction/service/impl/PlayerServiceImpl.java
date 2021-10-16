@@ -28,7 +28,7 @@ public class PlayerServiceImpl implements PlayerService {
                 new Object[]{player.getName(), player.getCtime(), player.getUtime()},
                 new int[] {Types.VARCHAR, Types.TIMESTAMP, Types.TIMESTAMP});
 
-        //事务测试
+        //事务测试，默认情况下Spring中的事务处理只对RuntimeException进行回滚
 //        throw new RuntimeException("事务测试");
     }
 }

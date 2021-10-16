@@ -12,7 +12,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.scheduling.annotation.EnableAsync;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 
 @EnableAsync   //启用异步调用
