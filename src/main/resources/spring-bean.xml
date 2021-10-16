@@ -7,7 +7,7 @@
        http://www.springframework.org/schema/aop
        http://www.springframework.org/schema/aop/spring-aop.xsd
        http://www.springframework.org/schema/tx
-       http://www.springframework.org/schema/tx/spring-tx.xsd">
+       http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 
     <bean id="userBean" class="com.jonas.bean.User" init-method="init">
         <property name="userId" value="1"/>
