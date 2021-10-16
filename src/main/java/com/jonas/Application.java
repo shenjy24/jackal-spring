@@ -13,6 +13,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.scheduling.annotation.EnableAsync;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 @EnableAsync   //启用异步调用
 @ComponentScan
@@ -26,7 +27,7 @@ public class Application {
     public void testTransaction() {
         ApplicationContext context = new ClassPathXmlApplicationContext("spring-bean.xml");
         PlayerService playerService = (PlayerService) context.getBean("playerService");
-        Player player = new Player("Jonas", new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis()));
+        Player player = new Player("Jonas", new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()));
         playerService.save(player);
     }
 
