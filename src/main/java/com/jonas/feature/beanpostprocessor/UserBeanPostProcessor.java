@@ -1,9 +1,12 @@
 package com.jonas.feature.beanpostprocessor;
 
 import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.config.BeanPostProcessor;
+import org.springframework.beans.PropertyValues;
+import org.springframework.beans.factory.config.InstantiationAwareBeanPostProcessor;
 
-public class UserBeanPostProcessor implements BeanPostProcessor {
+import java.beans.PropertyDescriptor;
+
+public class UserBeanPostProcessor implements InstantiationAwareBeanPostProcessor {
 
     /**
      * 在bean初始化之前调用，例如 afterPropertiesSet 或 init-method
@@ -25,5 +28,15 @@ public class UserBeanPostProcessor implements BeanPostProcessor {
             System.out.println("postProcessAfterInitialization:" + beanName);
         }
         return bean;
+    }
+
+
+    @Override
+    public PropertyValues postProcessProperties(PropertyValues pvs, Object bean, String beanName) throws BeansException {
+        if ("userBean".equals(beanName)) {
+            String message = String.format("postProcessProperties bean:%s, pvs:%s", bean, pvs);
+            System.out.println(message);
+        }
+        return InstantiationAwareBeanPostProcessor.super.postProcessProperties(pvs, bean, beanName);
     }
 }

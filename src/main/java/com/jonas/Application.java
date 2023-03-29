@@ -2,6 +2,8 @@ package com.jonas;
 
 import com.jonas.bean.User;
 import com.jonas.controller.UserController;
+import com.jonas.feature.aware.AllAwareInterface;
+import com.jonas.feature.factorybean.UserFactoryBean;
 import com.jonas.feature.transaction.domain.Player;
 import com.jonas.feature.transaction.service.PlayerService;
 import com.jonas.listener.event.LogEvent;
@@ -20,7 +22,12 @@ public class Application {
 
     public static void main(String[] args) {
         Application app = new Application();
-        app.testTransaction();
+        app.testAware();
+    }
+
+    public void testAware() {
+        ApplicationContext context = new AnnotationConfigApplicationContext(Application.class);
+        AllAwareInterface awareInterface = context.getBean(AllAwareInterface.class);
     }
 
     public void testTransaction() {
@@ -37,10 +44,10 @@ public class Application {
         ApplicationContext context = new ClassPathXmlApplicationContext("spring-bean.xml");
         User user = (User) context.getBean("userBean");
         System.out.println(user);
-        User customUser = (User) context.getBean("customUserBean");
-//        UserFactoryBean customUser = (UserFactoryBean) context.getBean("&customUserBean");
+//        User customUser = (User) context.getBean("customUserBean");
+        UserFactoryBean customUser = (UserFactoryBean) context.getBean("&customUserBean");
         System.out.println(customUser);
-        customUser.init();
+//        customUser.init();
     }
 
     /**
