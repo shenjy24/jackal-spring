@@ -1,8 +1,10 @@
 package com.jonas;
 
+import com.jonas.bean.BeanPostProcessorBean;
 import com.jonas.bean.User;
 import com.jonas.controller.UserController;
 import com.jonas.feature.aware.AllAwareInterface;
+import com.jonas.feature.aware.MyEmbeddedValueResolverAware;
 import com.jonas.feature.factorybean.UserFactoryBean;
 import com.jonas.feature.transaction.domain.Player;
 import com.jonas.feature.transaction.service.PlayerService;
@@ -22,7 +24,21 @@ public class Application {
 
     public static void main(String[] args) {
         Application app = new Application();
-        app.testAware();
+        app.testBeanPostProcessor();
+    }
+
+    /**
+     * 测试 BeanPostProcessor
+     */
+    public void testBeanPostProcessor() {
+        ApplicationContext context = new ClassPathXmlApplicationContext("spring-bean.xml");
+        BeanPostProcessorBean bean = context.getBean(BeanPostProcessorBean.class);
+    }
+
+    public void testEmbeddedValueResolverAware() {
+        ApplicationContext context = new AnnotationConfigApplicationContext(Application.class);
+        MyEmbeddedValueResolverAware aware = context.getBean(MyEmbeddedValueResolverAware.class);
+        System.out.println(aware.resolve("${logging.file}"));
     }
 
     public void testAware() {
