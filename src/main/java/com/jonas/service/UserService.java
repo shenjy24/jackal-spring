@@ -1,8 +1,8 @@
 package com.jonas.service;
 
-import com.jonas.bean.User;
+import com.jonas.bean.UserBean;
 
 public interface UserService {
-    User getUser();
-    void printUserInfo(User user);
+    UserBean getUser();
+    void printUserInfo(UserBean userBean);
 }

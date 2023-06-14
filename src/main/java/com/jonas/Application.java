@@ -1,7 +1,7 @@
 package com.jonas;
 
 import com.jonas.bean.BeanPostProcessorBean;
-import com.jonas.bean.User;
+import com.jonas.bean.UserBean;
 import com.jonas.controller.UserController;
 import com.jonas.feature.aware.AllAwareInterface;
 import com.jonas.feature.aware.MyEmbeddedValueResolverAware;
@@ -58,8 +58,8 @@ public class Application {
      */
     public void testXmlInject() {
         ApplicationContext context = new ClassPathXmlApplicationContext("spring-bean.xml");
-        User user = (User) context.getBean("userBean");
-        System.out.println(user);
+        UserBean userBean = (UserBean) context.getBean("userBean");
+        System.out.println(userBean);
 //        User customUser = (User) context.getBean("customUserBean");
         UserFactoryBean customUser = (UserFactoryBean) context.getBean("&customUserBean");
         System.out.println(customUser);
@@ -72,10 +72,10 @@ public class Application {
     public void testAnnotationInject() {
         ApplicationContext context = new AnnotationConfigApplicationContext(Application.class);
         UserService userService = context.getBean(UserService.class);
-        User user = userService.getUser();
-        userService.printUserInfo(user);
+        UserBean userBean = userService.getUser();
+        userService.printUserInfo(userBean);
         //发布事件
-        context.publishEvent(new LogEvent(context, user));
+        context.publishEvent(new LogEvent(context, userBean));
     }
 
     /**
@@ -84,7 +84,7 @@ public class Application {
     public void testAutowired() {
         ApplicationContext context = new AnnotationConfigApplicationContext(Application.class);
         UserController userController = context.getBean(UserController.class);
-        User user = userController.getUser();
-        userController.printUserInfo(user);
+        UserBean userBean = userController.getUser();
+        userController.printUserInfo(userBean);
     }
 }

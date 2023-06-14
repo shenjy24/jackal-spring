@@ -1,6 +1,6 @@
 package com.jonas.controller;
 
-import com.jonas.bean.User;
+import com.jonas.bean.UserBean;
 import com.jonas.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,11 +11,11 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    public User getUser() {
+    public UserBean getUser() {
         return userService.getUser();
     }
 
-    public void printUserInfo(User user) {
-        userService.printUserInfo(user);
+    public void printUserInfo(UserBean userBean) {
+        userService.printUserInfo(userBean);
     }
 }

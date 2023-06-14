@@ -1,19 +1,19 @@
 package com.jonas.listener.event;
 
-import com.jonas.bean.User;
+import com.jonas.bean.UserBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.event.ApplicationContextEvent;
 
 public class LogEvent extends ApplicationContextEvent {
 
-    private User user;
+    private UserBean userBean;
 
-    public LogEvent(ApplicationContext source, User user) {
+    public LogEvent(ApplicationContext source, UserBean userBean) {
         super(source);
-        this.user = user;
+        this.userBean = userBean;
     }
 
-    public User getUser() {
-        return user;
+    public UserBean getUser() {
+        return userBean;
     }
 }
